@@ -10,21 +10,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
-jobs:
-  prep:
-    runs-on: macos-latest
-    steps:
-   # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-    - name: Prep
-      run: brew bundle || true
-    - name: Prep gem
-      run:  gem install cocoapods-rome || true
-  
-  
+jobs:  
   # This workflow contains a single job called "build"
   build:
-    needs: prep
     runs-on: macos-latest
     
     #strategies
@@ -35,8 +23,22 @@ jobs:
           SWIFT_EMBEDDED: [YES, NO]
 
     steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    - name: Prep
+      run: brew bundle || true
+
+    - name: Prep gem
+      run:  gem install cocoapods-rome || true
+
     - name: Run stuff
       run: pod install
       env:
         ENABLE_BITCODE: ${{ matrix.ENABLE_BITCODE }}
         SWIFT_EMBEDDED: ${{ matrix.SWIFT_EMBEDDED }}
+  
+    - uses: actions/upload-artifact@v3
+      with:
+        name: Archive_DynamicFramework_Bitcode${{ matrix.ENABLE_BITCODE }}_SwiftEmbeded${{ matrix.SWIFT_EMBEDDED }}_${{GITHUB_SHA}}
+        path: Rome/
