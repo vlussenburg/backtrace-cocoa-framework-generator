@@ -11,30 +11,31 @@ on:
     branches: [ "main" ]
 
 jobs:
+  prep:
+    runs-on: macos-latest
+    steps:
+   # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    - name: Prep
+      run: brew bundle || true
+    - name: Prep gem
+      run:  gem install cocoapods-rome || true
+  
   
   # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: macos-latest
     
     #strategies
     strategy:
-      max-parallel: 2
+      max-parallel: 1
       matrix:
           ENABLE_BITCODE: [YES, NO]
           SWIFT_EMBEDDED: [YES, NO]
 
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-
-    # Runs a single command using the runners shell
-    - name: Prep
-      run: brew bundle || true
-    - name: Prep gem
-      run:  gem install cocoapods-rome || true
     - name: Run stuff
       run: pod install
       env:
-        ENABLE_BITCODE: ${{ matrix.BITCODE }}
+        ENABLE_BITCODE: ${{ matrix.ENABLE_BITCODE }}
         SWIFT_EMBEDDED: ${{ matrix.SWIFT_EMBEDDED }}
