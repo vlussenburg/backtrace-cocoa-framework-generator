@@ -24,6 +24,7 @@ jobs:
   
   # This workflow contains a single job called "build"
   build:
+    needs: prep
     runs-on: macos-latest
     
     #strategies
