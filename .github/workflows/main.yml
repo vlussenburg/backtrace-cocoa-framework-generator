@@ -19,6 +19,7 @@ jobs:
     
     #strategies
     strategy:
+      max-parallel: 2
       matrix:
           ENABLE_BITCODE: [YES, NO]
           SWIFT_EMBEDDED: [YES, NO]
