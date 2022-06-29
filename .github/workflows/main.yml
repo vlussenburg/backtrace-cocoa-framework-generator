@@ -29,8 +29,12 @@ jobs:
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
+    - name: Prep
+      run: brew bundle || true
+    - name: Prep gem
+      run:  gem install cocoapods-rome || true
     - name: Run stuff
-      run: brew bundle || pod install
+      run: pod install
       env:
         ENABLE_BITCODE: ${{ matrix.BITCODE }}
         SWIFT_EMBEDDED: ${{ matrix.SWIFT_EMBEDDED }}
