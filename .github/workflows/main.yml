@@ -32,7 +32,7 @@ jobs:
       run:  gem install cocoapods-rome || true
 
     - name: Run stuff
-      run: pod install
+      run: pod install --project-directory=.github/workflow/
       env:
         ENABLE_BITCODE: ${{ matrix.ENABLE_BITCODE }}
         SWIFT_EMBEDDED: ${{ matrix.SWIFT_EMBEDDED }}
