@@ -38,7 +38,7 @@ jobs:
         SWIFT_EMBEDDED: ${{ matrix.SWIFT_EMBEDDED }}
 
     - name: Tar files to preserve file permissions
-      run: tar -cvf Archive_DynamicFramework_Bitcode${{ matrix.ENABLE_BITCODE }}_SwiftEmbedded${{ matrix.SWIFT_EMBEDDED }}_${{ github.sha }}.tar Rome/
+      run: tar -cvf Archive_DynamicFramework_Bitcode${{ matrix.ENABLE_BITCODE }}_SwiftEmbedded${{ matrix.SWIFT_EMBEDDED }}_${{ github.sha }}.tar Rome/ dSYM/
 
     - uses: actions/upload-artifact@v3
       with:
