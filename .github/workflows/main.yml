@@ -37,8 +37,10 @@ jobs:
       env:
         ENABLE_BITCODE: ${{ matrix.ENABLE_BITCODE }}
         SWIFT_EMBEDDED: ${{ matrix.SWIFT_EMBEDDED }}
-  
+    - name: Tar files
+      run: tar -cvf Archive_DynamicFramework_Bitcode${{ matrix.ENABLE_BITCODE }}_SwiftEmbedded${{ matrix.SWIFT_EMBEDDED }}_${{ github.sha }}.tar Rome/
+
     - uses: actions/upload-artifact@v3
       with:
         name: Archive_DynamicFramework_Bitcode${{ matrix.ENABLE_BITCODE }}_SwiftEmbedded${{ matrix.SWIFT_EMBEDDED }}_${{ github.sha }}
-        path: Rome/
+        path: Archive_DynamicFramework_Bitcode${{ matrix.ENABLE_BITCODE }}_SwiftEmbedded${{ matrix.SWIFT_EMBEDDED }}_${{ github.sha }}.tar
