@@ -56,6 +56,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: ${{ steps.download.outputs.download-path }}
+          file: ${{ steps.download.outputs.download-path }}/Archive_DynamicFramework*
           draft: true
           verbose: env.ACTIONS_STEP_DEBUG
