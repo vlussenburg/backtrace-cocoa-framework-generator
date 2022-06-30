@@ -40,5 +40,5 @@ jobs:
   
     - uses: actions/upload-artifact@v3
       with:
-        name: Archive_DynamicFramework_Bitcode${{ matrix.ENABLE_BITCODE }}_SwiftEmbeded${{ matrix.SWIFT_EMBEDDED }}_${GITHUB_SHA}
+        name: Archive_DynamicFramework_Bitcode${{ matrix.ENABLE_BITCODE }}_SwiftEmbedded${{ matrix.SWIFT_EMBEDDED }}_${GITHUB_SHA}
         path: Rome/
