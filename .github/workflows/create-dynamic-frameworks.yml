@@ -20,21 +20,9 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    
-    - name: Cache Homebrew Packages
-      id: cache-homebrew-packages
-      uses: actions/cache@v3
-      env:
-        cache-name: homebrew-packages
-      with:
-        path: $(brew --prefix)
-        key: ${{ env.cache-name }}-${{ hashFiles('Brewfile') }}
 
-    - name: Prep
-      run: brew bundle || true
-
-    - name: Install cocoapods-rome
-      run: gem install cocoapods-rome
+    - name: Install cocoapods and rome
+      run: gem install cocoapods cocoapods-rome
       
     - name: Run pod install from workflows directory
       run: cd .github/workflows && pod install
