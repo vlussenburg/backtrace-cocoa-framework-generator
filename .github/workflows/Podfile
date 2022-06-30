@@ -28,5 +28,5 @@ plugin 'cocoapods-rome', { :pre_compile => Proc.new { |installer|
 
 target 'backtrace' do
   use_frameworks!
-  pod 'Backtrace'
+  pod 'Backtrace', ENV['BACKTRACE_VERSION']
 end
