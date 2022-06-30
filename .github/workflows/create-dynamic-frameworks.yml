@@ -47,9 +47,14 @@ jobs:
 
       - uses: actions/download-artifact@v3
 
+      - name: 'Echo download path'
+        if: env.ACTIONS_STEP_DEBUG 
+        run: echo ${{steps.download.outputs.download-path}}
+
       - uses: xresloader/upload-to-github-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: Archive_DynamicFramework_*
+          file: ${{ steps.download.outputs.download-path }}
           draft: true
+          verbose: env.ACTIONS_STEP_DEBUG
