@@ -1,0 +1,20 @@
+name: Create Dynamic Framework Archives
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Create Dynamic Framework Archives]
+    types:
+      - completed
+      
+      - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v3
+      
+      - uses: xresloader/upload-to-github-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        file: Archive_DynamicFramework_*.tar.gz
+        tags: true
+        draft: true
