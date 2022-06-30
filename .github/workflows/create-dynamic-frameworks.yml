@@ -24,8 +24,8 @@ jobs:
     - name: Install cocoapods and rome
       run: gem install cocoapods cocoapods-rome
       
-    - name: Run pod install from workflows directory
-      run: cd .github/workflows && pod install
+    - name: Run pod install with Podfile from workflows directory
+      run: cp .github/workflows/Podfile . && pod install
       env:
         ENABLE_BITCODE: ${{ matrix.ENABLE_BITCODE }}
         SWIFT_EMBEDDED: ${{ matrix.SWIFT_EMBEDDED }}
