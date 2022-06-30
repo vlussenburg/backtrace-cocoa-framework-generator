@@ -1,4 +1,4 @@
-name: Create Dynamic Framework Archives
+name: Upload Dynamic Framework Archives to Release
 
 on:
   workflow_dispatch:
